@@ -39,12 +39,8 @@ class CashRegister
         @total -= @cost
         removedItem = @item.pop
         if item.include?(removedItem)
-            preAmt = @item.length
-            item.reject {|thing| thing == removedItem}
-            while preAmt != item.length
-                preAmt -= 1
-                @total -= @cost
-            end
+            others = item.count(removedItem)
+            @total -= others * @cost
         end
         if @item.empty?
             @total = 0
